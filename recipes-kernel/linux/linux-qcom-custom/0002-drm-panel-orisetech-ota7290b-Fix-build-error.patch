@@ -1,0 +1,107 @@
+From f1ea637eb69fa6f9466ad4ea7ae8cfe39dedd8ea Mon Sep 17 00:00:00 2001
+From: Stephen Chen <stephen@radxa.com>
+Date: Wed, 25 Jun 2025 09:23:03 +0800
+Subject: [PATCH 2/9] drm/panel: orisetech-ota7290b: Fix build error
+
+Panel driver orisetech-ota7290b is cherry-picked from kernel 6.15.
+Modify ota7290b_on and ota7290b_off to fix commit 9d729c6694f2.
+
+Signed-off-by: Stephen Chen <stephen@radxa.com>
+
+diff --git a/drivers/gpu/drm/panel/panel-orisetech-ota7290b.c b/drivers/gpu/drm/panel/panel-orisetech-ota7290b.c
+index 3f4848cefd47..e1ad3300bc91 100644
+--- a/drivers/gpu/drm/panel/panel-orisetech-ota7290b.c
++++ b/drivers/gpu/drm/panel/panel-orisetech-ota7290b.c
+@@ -26,7 +26,7 @@ struct panel_desc {
+ 	enum mipi_dsi_pixel_format format;
+ 	unsigned int lanes;
+ 	const char *panel_name;
+-	void (*init_sequence)(struct mipi_dsi_multi_context *ctx);
++	int (*init_sequence)(struct mipi_dsi_device *dsi);
+ };
+ 
+ struct ota7290b_panel {
+@@ -77,38 +77,61 @@ static int ota7290b_power_off(struct ota7290b_panel *ctx)
+ 	return ret;
+ }
+ 
+-static int ota7290b_on(struct ota7290b_panel *ota7290b)
++static int ota7290b_on(struct ota7290b_panel *ctx)
+ {
+-	struct mipi_dsi_multi_context ctx = { .dsi = ota7290b->dsi };
+-	const struct panel_desc *desc = ota7290b->desc;
++	struct mipi_dsi_device *dsi = ctx->dsi;
++	const struct panel_desc *desc = ctx->desc;
++	int ret = 0;
+ 
+-	ota7290b->dsi->mode_flags |= MIPI_DSI_MODE_LPM;
++	dsi->mode_flags |= MIPI_DSI_MODE_LPM;
+ 
+-	if (desc->init_sequence)
+-		desc->init_sequence(&ctx);
++	if (desc->init_sequence) {
++		ret = desc->init_sequence(dsi);
++		if (ret < 0) {
++			dev_err(&dsi->dev, "panel init sequence failed: %d\n", ret);
++			return ret;
++		}
++	}
+ 
+-	mipi_dsi_dcs_exit_sleep_mode_multi(&ctx);
+-	mipi_dsi_msleep(&ctx, 120);
+-	mipi_dsi_dcs_set_display_on_multi(&ctx);
++	ret = mipi_dsi_dcs_exit_sleep_mode(dsi);
++	if (ret < 0) {
++		dev_err(&dsi->dev, "Failed to exit sleep mode: %d\n", ret);
++		return ret;
++	}
++	msleep(120);
+ 
+-	mipi_dsi_msleep(&ctx, 100);
++	ret = mipi_dsi_dcs_set_display_on(dsi);
++	if (ret < 0) {
++		dev_err(&dsi->dev, "Failed to set display on: %d\n", ret);
++		return ret;
++	}
++	msleep(100);
+ 
+-	return ctx.accum_err;
++	return 0;
+ }
+ 
+-static int ota7290b_off(struct ota7290b_panel *panel)
++static int ota7290b_off(struct ota7290b_panel *ctx)
+ {
+-	struct mipi_dsi_multi_context ctx = { .dsi = panel->dsi };
++	struct mipi_dsi_device *dsi = ctx->dsi;
++	int ret = 0;
+ 
+-	panel->dsi->mode_flags &= ~MIPI_DSI_MODE_LPM;
++	dsi->mode_flags &= ~MIPI_DSI_MODE_LPM;
+ 
+-	mipi_dsi_dcs_set_display_off_multi(&ctx);
+-	mipi_dsi_msleep(&ctx, 20);
++	ret = mipi_dsi_dcs_set_display_off(dsi);
++	if (ret < 0) {
++		dev_err(&dsi->dev, "Failed to set display off: %d\n", ret);
++		return ret;
++	}
++	msleep(20);
+ 
+-	mipi_dsi_dcs_enter_sleep_mode_multi(&ctx);
+-	mipi_dsi_msleep(&ctx, 60);
++	ret = mipi_dsi_dcs_enter_sleep_mode(dsi);
++	if (ret < 0) {
++		dev_err(&dsi->dev, "Failed to enter sleep mode: %d\n", ret);
++		return ret;
++	}
++	msleep(60);
+ 
+-	return ctx.accum_err;
++	return 0;
+ }
+ 
+ static int ota7290b_panel_prepare(struct drm_panel *panel)
+-- 
+2.51.2
+

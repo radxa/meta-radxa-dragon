@@ -1,0 +1,32 @@
+From 695ed801fdd97590e2641aaa258e1eda7cc6c89d Mon Sep 17 00:00:00 2001
+From: Andy Yan <andy.yan@rock-chips.com>
+Date: Thu, 19 Jun 2025 14:38:51 +0800
+Subject: [PATCH 5/9] drm/birdge: simple-bridge: Add support for radxa ra620
+
+The RA620 is an active DP to HDMI converter chip, basically
+no software is involved to drive it.
+
+Add it to simple bridge to make it can be find by the drm bridge chain.
+
+Signed-off-by: Andy Yan <andy.yan@rock-chips.com>
+Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+
+diff --git a/drivers/gpu/drm/bridge/simple-bridge.c b/drivers/gpu/drm/bridge/simple-bridge.c
+index cbe8e778d7c7..dac444f07d36 100644
+--- a/drivers/gpu/drm/bridge/simple-bridge.c
++++ b/drivers/gpu/drm/bridge/simple-bridge.c
+@@ -274,6 +274,11 @@ static const struct of_device_id simple_bridge_match[] = {
+ 			.timings = &default_bridge_timings,
+ 			.connector_type = DRM_MODE_CONNECTOR_VGA,
+ 		},
++	}, {
++		.compatible = "radxa,ra620",
++		.data = &(const struct simple_bridge_info) {
++			.connector_type = DRM_MODE_CONNECTOR_HDMIA,
++		},
+ 	}, {
+ 		.compatible = "ti,opa362",
+ 		.data = &(const struct simple_bridge_info) {
+-- 
+2.51.2
+
