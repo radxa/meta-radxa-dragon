@@ -38,7 +38,13 @@ repo sync
 git clone git@github.com:radxa/meta-radxa-dragon.git layers/meta-radxa-dragon -b scarthgap_qcom-6.6.116-QLI.1.7-Ver.1.1
 ```
 
-3. Add more packages
+3. Add layer meta-qcom-qim-product-sdk
+
+```
+git clone https://github.com/qualcomm-linux/meta-qcom-qim-product-sdk layers/meta-qcom-qim-product-sdk -b qcom-6.6.116-QLI.1.7-Ver.1.1_qim-product-sdk-2.2.1
+```
+
+4. Add more packages
 
 Add the following lines to file qcs9075-radxa-airbox-q900.conf
 
@@ -66,10 +72,10 @@ IMAGE_INSTALL:append = " \
 "
 ```
 
-4. Build machine qcs9075-radxa-airbox-q900
+5. Build machine qcs9075-radxa-airbox-q900
 
 ```
-export EXTRALAYERS="meta-radxa-dragon"
+export EXTRALAYERS="meta-radxa-dragon meta-qcom-qim-product-sdk"
 export MACHINE="qcs9075-radxa-airbox-q900"
 MACHINE=${MACHINE} DISTRO=qcom-wayland QCOM_SELECTED_BSP=custom source setup-environment
 bitbake qcom-multimedia-image
