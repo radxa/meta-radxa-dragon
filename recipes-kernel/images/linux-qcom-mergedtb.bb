@@ -97,6 +97,18 @@ do_install() {
    install -m 0644 ${B}/DTOverlays/* ${D}
 }
 
+# dtb 修复 Step 2（fix-dtb-via-ostree-devicetree）：把合并好的 combined-dtb.dtb 投到
+# DEPLOY_DIR_IMAGE，供 ostree-kernel-initramfs 以 OSTREE_DEVICETREE="combined-dtb.dtb"
+# 取用（其 do_install 用 cp ${DEPLOY_DIR_IMAGE}/<basename>）。该配方原本只 do_install 进包，
+# 不 deploy；不补这步则 OSTREE_DEVICETREE 指向 combined-dtb.dtb 会因源文件缺失而失败。
+inherit deploy
+
+do_deploy() {
+    install -d ${DEPLOYDIR}
+    install -m 0644 ${B}/DTOverlays/combined-dtb.dtb ${DEPLOYDIR}/combined-dtb.dtb
+}
+addtask deploy after do_compile before do_build
+
 PACKAGE_ARCH = "${MACHINE_ARCH}"
 
 #Allow to build empty ${PN}-el2-combined package
