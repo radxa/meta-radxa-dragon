@@ -1,0 +1,42 @@
+From e942627e83e66be0f55a47ff04d4873a79babd18 Mon Sep 17 00:00:00 2001
+From: Stephen Chen <stephen@radxa.com>
+Date: Sat, 4 Jul 2026 17:46:56 +0800
+Subject: [PATCH] add Radxa AIRbox Q900 board
+
+Both Radxa AIRbox Q900 and SA8775P RIDE use the same DSP binaries.
+Update `config.txt` to link sa8775p/radxa/airbox-q900 DSP binary paths
+to the existing sa8775p/Qualcomm/SA8775P-RIDE binaries.
+
+Upstream-Status: Pending
+
+Signed-off-by: Stephen Chen <stephen@radxa.com>
+
+diff --git a/conf.d/hexagon-dsp-binaries-radxa-airbox-q900.yaml b/conf.d/hexagon-dsp-binaries-radxa-airbox-q900.yaml
+new file mode 100644
+index 0000000..9669e65
+--- /dev/null
++++ b/conf.d/hexagon-dsp-binaries-radxa-airbox-q900.yaml
+@@ -0,0 +1,5 @@
++# SPDX-License-Identifier: MIT
++# Copyright (c) 2026 Radxa Computer (Shenzhen) Co., Ltd.
++machines:
++  Qualcomm Technologies, Inc. Lemans EVK:
++    DSP_LIBRARY_PATH: sa8775p/radxa/airbox-q900/dsp
+diff --git a/config.txt b/config.txt
+index 1eccee2..f21fbe3 100644
+--- a/config.txt
++++ b/config.txt
+@@ -101,3 +101,10 @@ Link: x1e80100/Qualcomm/Hamoa-IoT-EVK/dsp/cdsp	x1p42100/Qualcomm/Purwa-IoT-EVK/d
+ # QCM6490 IDP
+ Link: qcm6490/Thundercomm/RB3gen2/dsp/adsp      qcm6490/Qualcomm/QCM6490-IDP/dsp/adsp
+ Link: qcm6490/Thundercomm/RB3gen2/dsp/cdsp      qcm6490/Qualcomm/QCM6490-IDP/dsp/cdsp
++
++# Radxa AIRbox Q900
++Link: sa8775p/Qualcomm/SA8775P-RIDE/dsp/adsp	sa8775p/radxa/airbox-q900/dsp/adsp
++Link: sa8775p/Qualcomm/SA8775P-RIDE/dsp/cdsp	sa8775p/radxa/airbox-q900/dsp/cdsp
++Link: sa8775p/Qualcomm/SA8775P-RIDE/dsp/cdsp1	sa8775p/radxa/airbox-q900/dsp/cdsp1
++Link: sa8775p/Qualcomm/SA8775P-RIDE/dsp/gdsp0	sa8775p/radxa/airbox-q900/dsp/gdsp0
++Link: sa8775p/Qualcomm/SA8775P-RIDE/dsp/gdsp1	sa8775p/radxa/airbox-q900/dsp/gdsp1
+-- 
+2.54.0
+

@@ -25,11 +25,14 @@ SRCBRANCH:class-devupstream ?= "branch=qcom-6.18.y"
 SRC_URI = " \
     git://github.com/qualcomm-linux/kernel.git;${SRCBRANCH};protocol=https \
     file://0001-tools-use-basename-to-identify-file-in-gen-mach-type.patch \
+    file://0001-firmware-qcom-scm-Allow-QSEECOM-on-Radxa-AIRbox-Q900.patch \
+    file://0002-arm64-dts-qcom-add-radxa-airbox-q900-board.patch \
 "
 
 # Additional kernel configs.
 SRC_URI += " \
     file://configs/bsp-additions.cfg \
+    file://configs/radxa-dragon.cfg \
 "
 
 # To build tip of qcom-6.18.y branch set preferred
