@@ -1,6 +1,6 @@
-From e942627e83e66be0f55a47ff04d4873a79babd18 Mon Sep 17 00:00:00 2001
+From 247c6b9c76edfa65e9d21031fc711593e6826c63 Mon Sep 17 00:00:00 2001
 From: Stephen Chen <stephen@radxa.com>
-Date: Sat, 4 Jul 2026 17:46:56 +0800
+Date: Fri, 10 Jul 2026 19:45:45 +0800
 Subject: [PATCH] add Radxa AIRbox Q900 board
 
 Both Radxa AIRbox Q900 and SA8775P RIDE use the same DSP binaries.
@@ -13,14 +13,14 @@ Signed-off-by: Stephen Chen <stephen@radxa.com>
 
 diff --git a/conf.d/hexagon-dsp-binaries-radxa-airbox-q900.yaml b/conf.d/hexagon-dsp-binaries-radxa-airbox-q900.yaml
 new file mode 100644
-index 0000000..9669e65
+index 0000000..03658aa
 --- /dev/null
 +++ b/conf.d/hexagon-dsp-binaries-radxa-airbox-q900.yaml
 @@ -0,0 +1,5 @@
 +# SPDX-License-Identifier: MIT
 +# Copyright (c) 2026 Radxa Computer (Shenzhen) Co., Ltd.
 +machines:
-+  Qualcomm Technologies, Inc. Lemans EVK:
++  Radxa. AIRbox Q900:
 +    DSP_LIBRARY_PATH: sa8775p/radxa/airbox-q900/dsp
 diff --git a/config.txt b/config.txt
 index 1eccee2..f21fbe3 100644
