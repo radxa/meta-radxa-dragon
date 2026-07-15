@@ -27,6 +27,8 @@ SRC_URI = " \
     file://0001-tools-use-basename-to-identify-file-in-gen-mach-type.patch \
     file://0001-firmware-qcom-scm-Allow-QSEECOM-on-Radxa-AIRbox-Q900.patch \
     file://0002-arm64-dts-qcom-add-radxa-airbox-q900-board.patch \
+    file://0001-arm64-dts-qcom-add-radxa-vmarc-q9075-io-board.patch \
+    file://0001-firmware-qcom-scm-Allow-QSEECOM-on-Radxa-VMARC-Q9075.patch \
 "
 
 # Additional kernel configs.

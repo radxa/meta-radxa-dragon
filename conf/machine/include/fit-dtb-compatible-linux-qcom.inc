@@ -54,6 +54,8 @@ FIT_DTB_COMPATIBLE[qcom_qcs9075-iot-subtype1-staging-emmc] = \
 
 FIT_DTB_COMPATIBLE[qcom_qcs9075-iot-subtype2] = \
     "lemans-radxa-airbox-q900 lemans-el2"
+FIT_DTB_COMPATIBLE[qcom_qcs9075-iot-subtype3] = \
+    "lemans-radxa-vmarc-q9075-io"
 
 FIT_DTB_COMPATIBLE[qcom_qcs9100-qam-el2gh-staging] = \
     "qcs9100-ride lemans-staging"

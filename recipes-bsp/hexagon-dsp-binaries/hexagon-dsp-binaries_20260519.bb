@@ -23,6 +23,7 @@ NO_GENERIC_LICENSE[dspso-WHENCE] = "WHENCE"
 SRC_URI = " \
     git://github.com/linux-msm/dsp-binaries;protocol=https;branch=trunk;tag=${PV} \
     file://0001-add-Radxa-AIRbox-Q900-board.patch \
+    file://0001-add-Radxa-VMARC-Q9075-IO-board.patch \
 "
 
 SRCREV = "f4021ba695bc1335666561d4f96fd3844cf88c45"
@@ -77,6 +78,9 @@ PACKAGE_BEFORE_PN =+ "\
     ${PN}-radxa-airbox-q900-gdsp \
     ${PN}-radxa-dragon-q6a-adsp \
     ${PN}-radxa-dragon-q6a-cdsp \
+    ${PN}-radxa-vmarc-q9075-io-adsp \
+    ${PN}-radxa-vmarc-q9075-io-cdsp \
+    ${PN}-radxa-vmarc-q9075-io-gdsp \
     ${PN}-thundercomm-db845c-adsp \
     ${PN}-thundercomm-db845c-cdsp \
     ${PN}-thundercomm-db845c-sdsp \
@@ -132,6 +136,9 @@ LICENSE:${PN}-radxa-airbox-q900-cdsp = "dspso-qcom-2"
 LICENSE:${PN}-radxa-airbox-q900-gdsp = "dspso-qcom-2"
 LICENSE:${PN}-radxa-dragon-q6a-adsp = "dspso-qcom"
 LICENSE:${PN}-radxa-dragon-q6a-cdsp = "dspso-qcom"
+LICENSE:${PN}-radxa-vmarc-q9075-io-adsp = "dspso-qcom-2"
+LICENSE:${PN}-radxa-vmarc-q9075-io-cdsp = "dspso-qcom-2"
+LICENSE:${PN}-radxa-vmarc-q9075-io-gdsp = "dspso-qcom-2"
 LICENSE:${PN}-thundercomm-db845c-adsp = "dspso-qcom"
 LICENSE:${PN}-thundercomm-db845c-cdsp = "dspso-qcom"
 LICENSE:${PN}-thundercomm-db845c-sdsp = "dspso-qcom"
@@ -194,6 +201,12 @@ RDEPENDS:${PN}-radxa-airbox-q900-gdsp = "${PN}-conf linux-firmware-qcom-sa8775p-
 RDEPENDS:${PN}-radxa-airbox-q900-gdsp += "${PN}-qcom-sa8775p-ride-gdsp"
 RDEPENDS:${PN}-radxa-dragon-q6a-adsp = "${PN}-conf linux-firmware-qcom-qcs6490-radxa-dragon-q6a-audio (= 1:${PV})"
 RDEPENDS:${PN}-radxa-dragon-q6a-cdsp = "${PN}-conf linux-firmware-qcom-qcs6490-radxa-dragon-q6a-compute (= 1:${PV})"
+RDEPENDS:${PN}-radxa-vmarc-q9075-io-adsp = "${PN}-conf linux-firmware-qcom-sa8775p-audio (= 1:${PV})"
+RDEPENDS:${PN}-radxa-vmarc-q9075-io-adsp += "${PN}-qcom-sa8775p-ride-adsp"
+RDEPENDS:${PN}-radxa-vmarc-q9075-io-cdsp = "${PN}-conf linux-firmware-qcom-sa8775p-compute (= 1:${PV})"
+RDEPENDS:${PN}-radxa-vmarc-q9075-io-cdsp += "${PN}-qcom-sa8775p-ride-cdsp"
+RDEPENDS:${PN}-radxa-vmarc-q9075-io-gdsp = "${PN}-conf linux-firmware-qcom-sa8775p-generalpurpose (= 1:${PV})"
+RDEPENDS:${PN}-radxa-vmarc-q9075-io-gdsp += "${PN}-qcom-sa8775p-ride-gdsp"
 RDEPENDS:${PN}-thundercomm-db845c-adsp = "${PN}-conf linux-firmware-qcom-sdm845-audio (= 1:${PV})"
 RDEPENDS:${PN}-thundercomm-db845c-cdsp = "${PN}-conf linux-firmware-qcom-sdm845-compute (= 1:${PV})"
 RDEPENDS:${PN}-thundercomm-db845c-sdsp = "${PN}-conf linux-firmware-qcom-sdm845-thundercomm-db845c-sensors (= 1:${PV})"
@@ -252,6 +265,9 @@ FILES:${PN}-radxa-airbox-q900-cdsp = "${datadir}/qcom/sa8775p/radxa/airbox-q900/
 FILES:${PN}-radxa-airbox-q900-gdsp = "${datadir}/qcom/sa8775p/radxa/airbox-q900/dsp/gdsp*"
 FILES:${PN}-radxa-dragon-q6a-adsp = "${datadir}/qcom/qcs6490/radxa/dragon-q6a/dsp/adsp"
 FILES:${PN}-radxa-dragon-q6a-cdsp = "${datadir}/qcom/qcs6490/radxa/dragon-q6a/dsp/cdsp"
+FILES:${PN}-radxa-vmarc-q9075-io-adsp = "${datadir}/qcom/sa8775p/radxa/vmarc-q9075-io/dsp/adsp"
+FILES:${PN}-radxa-vmarc-q9075-io-cdsp = "${datadir}/qcom/sa8775p/radxa/vmarc-q9075-io/dsp/cdsp*"
+FILES:${PN}-radxa-vmarc-q9075-io-gdsp = "${datadir}/qcom/sa8775p/radxa/vmarc-q9075-io/dsp/gdsp*"
 FILES:${PN}-thundercomm-db845c-adsp = "${datadir}/qcom/sdm845/Thundercomm/db845c/dsp/adsp"
 FILES:${PN}-thundercomm-db845c-cdsp = "${datadir}/qcom/sdm845/Thundercomm/db845c/dsp/cdsp"
 FILES:${PN}-thundercomm-db845c-sdsp = "${datadir}/qcom/sdm845/Thundercomm/db845c/dsp/sdsp"

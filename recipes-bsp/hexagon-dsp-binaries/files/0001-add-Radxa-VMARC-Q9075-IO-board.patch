@@ -1,0 +1,42 @@
+From 06cf4ff4043b415b3922c0649cf0d2508232f1e0 Mon Sep 17 00:00:00 2001
+From: Stephen Chen <stephen@radxa.com>
+Date: Fri, 10 Jul 2026 19:47:39 +0800
+Subject: [PATCH] add Radxa VMARC-Q9075 IO board
+
+Both Radxa VMARC-Q9075 IO and SA8775P RIDE use the same DSP binaries.
+Update `config.txt` to link sa8775p/radxa/vmarc-q9075-io DSP binary paths
+to the existing sa8775p/Qualcomm/SA8775P-RIDE binaries.
+
+Upstream-Status: Pending
+
+Signed-off-by: Stephen Chen <stephen@radxa.com>
+
+diff --git a/conf.d/hexagon-dsp-binaries-radxa-vmarc-q9075-io.yaml b/conf.d/hexagon-dsp-binaries-radxa-vmarc-q9075-io.yaml
+new file mode 100644
+index 0000000..0be74eb
+--- /dev/null
++++ b/conf.d/hexagon-dsp-binaries-radxa-vmarc-q9075-io.yaml
+@@ -0,0 +1,5 @@
++# SPDX-License-Identifier: MIT
++# Copyright (c) 2026 Radxa Computer (Shenzhen) Co., Ltd.
++machines:
++  Radxa. VMARC-Q9075 IO board:
++    DSP_LIBRARY_PATH: sa8775p/radxa/vmarc-q9075-io/dsp
+diff --git a/config.txt b/config.txt
+index f21fbe3..a68aab2 100644
+--- a/config.txt
++++ b/config.txt
+@@ -108,3 +108,10 @@ Link: sa8775p/Qualcomm/SA8775P-RIDE/dsp/cdsp	sa8775p/radxa/airbox-q900/dsp/cdsp
+ Link: sa8775p/Qualcomm/SA8775P-RIDE/dsp/cdsp1	sa8775p/radxa/airbox-q900/dsp/cdsp1
+ Link: sa8775p/Qualcomm/SA8775P-RIDE/dsp/gdsp0	sa8775p/radxa/airbox-q900/dsp/gdsp0
+ Link: sa8775p/Qualcomm/SA8775P-RIDE/dsp/gdsp1	sa8775p/radxa/airbox-q900/dsp/gdsp1
++
++# Radxa VMARC-Q9075 IO board
++Link: sa8775p/Qualcomm/SA8775P-RIDE/dsp/adsp	sa8775p/radxa/vmarc-q9075-io/dsp/adsp
++Link: sa8775p/Qualcomm/SA8775P-RIDE/dsp/cdsp	sa8775p/radxa/vmarc-q9075-io/dsp/cdsp
++Link: sa8775p/Qualcomm/SA8775P-RIDE/dsp/cdsp1	sa8775p/radxa/vmarc-q9075-io/dsp/cdsp1
++Link: sa8775p/Qualcomm/SA8775P-RIDE/dsp/gdsp0	sa8775p/radxa/vmarc-q9075-io/dsp/gdsp0
++Link: sa8775p/Qualcomm/SA8775P-RIDE/dsp/gdsp1	sa8775p/radxa/vmarc-q9075-io/dsp/gdsp1
+-- 
+2.54.0
+
