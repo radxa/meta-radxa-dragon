@@ -1,0 +1,13 @@
+# Generic QCOM UEFI UFS image (4 KiB logical sectors)
+#
+# The board boot chain and UEFI firmware are already present in persistent
+# storage. This image is written to the UFS user LUN and contains only an ESP
+# plus the Linux root filesystem.
+
+# rawcopy preserves the FAT volume UUID of esp-qcom-image. Use the volume
+# label for fstab instead of asking WIC to synthesize a different UUID.
+part /boot/efi --source rawcopy --sourceparams="file=esp-qcom-image-${MACHINE}.rootfs.vfat" --fstype=vfat --label EFI --active --align 4096 --fixed-size 512M --use-label --part-name ESP --part-type=C12A7328-F81F-11D2-BA4B-00A0C93EC93B
+
+part / --source rootfs --fstype=ext4 --label ${QCOM_EFI_ROOTFS_LABEL} --align 4096 --use-uuid --part-name rootfs --part-type=0FC63DAF-8483-4772-8E79-3D69D8477DE4
+
+bootloader --ptable gpt
