@@ -35,6 +35,12 @@ SRC_URI = " \
     file://0004-scsi-ufs-qcom-Add-support-for-UFS-module-detection.patch \
     file://0005-ufs-qcom-add-PA_TACTIVATE-quirk-for-Kioxia-THGJFGT1E.patch \
     file://0006-arm64-dts-qcom-qcs6490-Add-Radxa-Dragon-Q6A.patch \
+    file://0007-wifi-libipw-fix-key-index-receive-bound-checks.patch \
+    file://0008-wifi-libipw-reject-too-short-beacon-and-probe-responses.patch \
+    file://0009-wifi-libipw-reject-too-short-association-responses.patch \
+    file://0010-wifi-ipw2x00-rename-michael_mic.patch \
+    file://0011-wifi-ipw2x00-use-michael_mic-from-cfg80211.patch \
+    file://0012-wifi-libipw-reject-TKIP-frames-without-a-full-MIC.patch \
 "
 
 # Additional kernel configs.
