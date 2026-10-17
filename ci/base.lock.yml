@@ -11,7 +11,7 @@ overrides:
         meta-arm:
             commit: 673e8d7c5dcd14de58092eb73e6ecc5eee5c1735
         meta-qcom-distro:
-            commit: f0c3c7bd98c36bcb797dc5d8d361dbf90d3cafc0
+            commit: cb3b57a05c09d7fbcadd471bc03ba401100c084a
         meta-openembedded:
             commit: 47d7dbdd10890bbd429bc0cccbe14435c37e5af1
         meta-virtualization:
