@@ -70,6 +70,9 @@ PACKAGE_BEFORE_PN =+ "\
     ${PN}-qcom-shikra-iqs-evk-cdsp \
     ${PN}-qcom-sm8750-mtp-adsp \
     ${PN}-qcom-sm8750-mtp-cdsp \
+    ${PN}-radxa-airbox-q900-adsp \
+    ${PN}-radxa-airbox-q900-cdsp \
+    ${PN}-radxa-airbox-q900-gdsp \
     ${PN}-radxa-dragon-q6a-adsp \
     ${PN}-radxa-dragon-q6a-cdsp \
     ${PN}-thundercomm-db845c-adsp \
@@ -127,6 +130,9 @@ LICENSE:${PN}-qcom-shikra-cqs-evk-cdsp = "dspso-qcom-2"
 LICENSE:${PN}-qcom-shikra-iqs-evk-cdsp = "dspso-qcom-2"
 LICENSE:${PN}-qcom-sm8750-mtp-adsp = "dspso-qcom-2"
 LICENSE:${PN}-qcom-sm8750-mtp-cdsp = "dspso-qcom-2"
+LICENSE:${PN}-radxa-airbox-q900-adsp = "dspso-qcom-2"
+LICENSE:${PN}-radxa-airbox-q900-cdsp = "dspso-qcom-2"
+LICENSE:${PN}-radxa-airbox-q900-gdsp = "dspso-qcom-2"
 LICENSE:${PN}-radxa-dragon-q6a-adsp = "dspso-qcom"
 LICENSE:${PN}-radxa-dragon-q6a-cdsp = "dspso-qcom"
 LICENSE:${PN}-thundercomm-db845c-adsp = "dspso-qcom"
@@ -181,6 +187,9 @@ RDEPENDS:${PN}-qcom-shikra-cqs-evk-cdsp = "linux-firmware-qcom-shikra-compute (=
 RDEPENDS:${PN}-qcom-shikra-iqs-evk-cdsp = "${PN}-qcom-shikra-cqs-evk-cdsp (= ${PV})"
 RDEPENDS:${PN}-qcom-sm8750-mtp-adsp = "linux-firmware-qcom-sa8775p-audio (= 1:${PV})"
 RDEPENDS:${PN}-qcom-sm8750-mtp-cdsp = "linux-firmware-qcom-sa8775p-compute (= 1:${PV})"
+RDEPENDS:${PN}-radxa-airbox-q900-adsp = "${PN}-qcom-sa8775p-ride-adsp (= ${PV})"
+RDEPENDS:${PN}-radxa-airbox-q900-cdsp = "${PN}-qcom-sa8775p-ride-cdsp (= ${PV})"
+RDEPENDS:${PN}-radxa-airbox-q900-gdsp = "${PN}-qcom-sa8775p-ride-gdsp (= ${PV})"
 RDEPENDS:${PN}-radxa-dragon-q6a-adsp = "linux-firmware-qcom-qcs6490-radxa-dragon-q6a-audio (= 1:${PV})"
 RDEPENDS:${PN}-radxa-dragon-q6a-cdsp = "linux-firmware-qcom-qcs6490-radxa-dragon-q6a-compute (= 1:${PV})"
 RDEPENDS:${PN}-thundercomm-db845c-adsp = "linux-firmware-qcom-sdm845-audio (= 1:${PV})"
@@ -264,6 +273,9 @@ FILES:${PN}-qcom-shikra-cqs-evk-cdsp = "${datadir}/qcom/shikra/Qualcomm/Shikra-C
 FILES:${PN}-qcom-shikra-iqs-evk-cdsp = "${datadir}/qcom/shikra/Qualcomm/Shikra-IQS-EVK/dsp/cdsp"
 FILES:${PN}-qcom-sm8750-mtp-adsp = "${datadir}/qcom/sm8750/Qualcomm/SM8750-MTP/dsp/adsp"
 FILES:${PN}-qcom-sm8750-mtp-cdsp = "${datadir}/qcom/sm8750/Qualcomm/SM8750-MTP/dsp/cdsp*"
+FILES:${PN}-radxa-airbox-q900-adsp = "${datadir}/qcom/sa8775p/radxa/airbox-q900/dsp/adsp"
+FILES:${PN}-radxa-airbox-q900-cdsp = "${datadir}/qcom/sa8775p/radxa/airbox-q900/dsp/cdsp*"
+FILES:${PN}-radxa-airbox-q900-gdsp = "${datadir}/qcom/sa8775p/radxa/airbox-q900/dsp/gdsp*"
 FILES:${PN}-radxa-dragon-q6a-adsp = "${datadir}/qcom/qcs6490/radxa/dragon-q6a/dsp/adsp"
 FILES:${PN}-radxa-dragon-q6a-cdsp = "${datadir}/qcom/qcs6490/radxa/dragon-q6a/dsp/cdsp"
 FILES:${PN}-thundercomm-db845c-adsp = "${datadir}/qcom/sdm845/Thundercomm/db845c/dsp/adsp"

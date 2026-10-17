@@ -41,6 +41,8 @@ SRC_URI = " \
     file://0010-wifi-ipw2x00-rename-michael_mic.patch \
     file://0011-wifi-ipw2x00-use-michael_mic-from-cfg80211.patch \
     file://0012-wifi-libipw-reject-TKIP-frames-without-a-full-MIC.patch \
+    file://0001-firmware-qcom-scm-Allow-QSEECOM-on-Radxa-AIRbox-Q900.patch \
+    file://0002-arm64-dts-qcom-add-radxa-airbox-q900-board.patch \
 "
 
 # Additional kernel configs.
